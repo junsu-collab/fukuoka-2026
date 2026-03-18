@@ -3,879 +3,1274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>후쿠오카 가족여행 2026 🌸</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<title>후쿠오카 가족여행 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #2d1b1b;
-    --paper: #fdf6f0;
-    --cream: #f5ebe0;
-    --pink: #e8a0a0;
-    --pink-light: #f9dede;
-    --pink-deep: #c96b6b;
-    --green: #7aab7a;
-    --gold: #c4933a;
-    --muted: #9a7a6a;
-    --white: #fff8f5;
-  }
+:root {
+  --ink:       #0f0e0c;
+  --ink-2:     #1a1815;
+  --ink-3:     #252219;
+  --gold:      #c8a04a;
+  --gold-lt:   #e8c878;
+  --gold-dim:  rgba(200,160,74,0.18);
+  --sakura:    #e8899a;
+  --sakura-lt: #f5c4cc;
+  --sakura-dim:rgba(232,137,154,0.15);
+  --pine:      #4a7c6a;
+  --fog:       rgba(255,248,238,0.06);
+  --fog-2:     rgba(255,248,238,0.04);
+  --text:      #e8e0d0;
+  --text-muted:#9a9080;
+  --text-dim:  #6a6258;
+  --border:    rgba(200,160,74,0.18);
+  --radius:    4px;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-  }
+html { scroll-behavior:smooth; }
 
-  /* ── STICKY TOP BAR ── */
-  .top-bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    background: rgba(255,248,245,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(232,160,160,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    padding: 0;
-    height: 48px;
-  }
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  .top-bar-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0 1.5rem;
-    height: 100%;
-    border-right: 1px solid rgba(232,160,160,0.25);
-    font-size: 0.78rem;
-  }
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:999;
+  opacity:0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
 
-  .top-bar-item:last-child { border-right: none; }
+/* ── KANJI VERTICAL TEXT BG DECO ── */
+.kanji-bg {
+  position:fixed;
+  top:0; right:2.5vw;
+  height:100vh;
+  writing-mode: vertical-rl;
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(4rem, 8vw, 9rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(200,160,74,0.06);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  z-index: 0;
+  display:flex;
+  align-items:center;
+  user-select:none;
+  overflow:hidden;
+}
 
-  .top-bar-label {
-    color: var(--muted);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-  }
+/* ── TOP BAR ── */
+.top-bar {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:200;
+  height:44px;
+  background: rgba(10,9,8,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+}
 
-  .top-bar-value {
-    font-weight: 500;
-    color: var(--ink);
-  }
+.top-bar-item {
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  padding:0 1.8rem;
+  height:100%;
+  border-right:1px solid rgba(200,160,74,0.1);
+}
+.top-bar-item:last-child { border-right:none; }
 
-  .dday-value {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--pink-deep);
-    font-weight: 700;
-  }
+.top-bar-label {
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+}
 
-  .rate-value { color: var(--green); font-weight: 500; }
-  .rate-change { font-size: 0.68rem; }
-  .rate-up { color: #e05050; }
-  .rate-down { color: #4a9a4a; }
+.top-bar-value {
+  font-size:0.78rem;
+  font-weight:500;
+  color:var(--text);
+}
 
-  .loading-dot {
-    width: 6px; height: 6px;
-    background: var(--pink);
-    border-radius: 50%;
-    animation: pulse 1s ease-in-out infinite;
-  }
+.dday-badge {
+  font-family:'Shippori Mincho', serif;
+  font-size:1rem;
+  color:var(--gold);
+  font-weight:700;
+  letter-spacing:0.02em;
+}
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
+.rate-live {
+  color:var(--sakura);
+  font-size:0.78rem;
+  font-weight:500;
+}
 
-  /* ── HERO ── */
+.loading-ring {
+  width:8px; height:8px;
+  border:1.5px solid var(--sakura-lt);
+  border-top-color:transparent;
+  border-radius:50%;
+  animation: spin 0.8s linear infinite;
+  display:inline-block;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── HERO ── */
+.hero {
+  position:relative;
+  min-height:100dvh;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  overflow:hidden;
+  padding-top:44px;
+}
+
+/* Left panel */
+.hero-left {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding: 6rem 3.5rem 5rem 5vw;
+  z-index:2;
+}
+
+.hero-right {
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+
+/* Right panel: ukiyo-e inspired illustrated bg */
+.hero-right-bg {
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 110% 80% at 60% 30%, rgba(232,137,154,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 80%, rgba(74,124,106,0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #141210 0%, #1e1a16 40%, #0f0e0c 100%);
+}
+
+/* Decorative SVG wave lines */
+.hero-right-lines {
+  position:absolute;
+  inset:0;
+  opacity:0.25;
+}
+
+/* Floating cherry blossoms canvas */
+#sakura-canvas {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+/* Large circle focal point */
+.hero-circle-art {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:min(420px, 80%);
+  height:min(420px, 80%);
+  border-radius:50%;
+  border:1px solid rgba(200,160,74,0.2);
+  box-shadow:
+    0 0 0 20px rgba(200,160,74,0.04),
+    0 0 0 60px rgba(200,160,74,0.02),
+    inset 0 0 80px rgba(232,137,154,0.06);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-circle-art::before {
+  content:'桜';
+  font-family:'Shippori Mincho', serif;
+  font-size:clamp(8rem, 18vw, 14rem);
+  font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,160,74,0.15);
+  line-height:1;
+}
+
+/* Gold diagonal line */
+.hero-divider {
+  position:absolute;
+  top:0; bottom:0;
+  left:0;
+  width:1px;
+  background:linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  opacity:0.25;
+  z-index:3;
+}
+
+/* Hero text content */
+.hero-eyebrow {
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+  margin-bottom:2rem;
+  opacity:0;
+  animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+}
+
+.eyebrow-line {
+  width:32px;
+  height:1px;
+  background:var(--gold);
+}
+
+.eyebrow-text {
+  font-size:0.65rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+
+.hero-title-block {
+  margin-bottom:2.5rem;
+  opacity:0;
+  animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+}
+
+.hero-title-jp {
+  font-family:'Shippori Mincho', serif;
+  font-size:clamp(5rem,12vw,9rem);
+  font-weight:800;
+  line-height:0.9;
+  letter-spacing:-0.02em;
+  color:var(--text);
+  display:block;
+}
+
+.hero-title-kr {
+  font-family:'Shippori Mincho', serif;
+  font-size:clamp(1.1rem,2.5vw,1.6rem);
+  font-weight:400;
+  color:var(--text-muted);
+  letter-spacing:0.25em;
+  margin-top:0.6rem;
+  display:block;
+}
+
+.hero-title-accent {
+  color:var(--sakura);
+}
+
+.hero-meta {
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  margin-bottom:2.5rem;
+  opacity:0;
+  animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s forwards;
+}
+
+.hero-meta-row {
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  font-size:0.78rem;
+  color:var(--text-muted);
+}
+
+.hero-meta-dot {
+  width:4px; height:4px;
+  background:var(--sakura);
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.hero-meta-val {
+  color:var(--text);
+  font-weight:500;
+}
+
+/* Tags pill row */
+.hero-tags {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  opacity:0;
+  animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
+}
+
+.hero-tag {
+  border:1px solid var(--border);
+  border-radius:2px;
+  padding:0.3rem 0.8rem;
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  background:var(--fog-2);
+}
+
+.hero-tag.gold {
+  border-color:rgba(200,160,74,0.4);
+  color:var(--gold);
+  background:rgba(200,160,74,0.06);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position:absolute;
+  bottom:2rem; left:5vw;
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+  opacity:0;
+  animation: fadeIn 1s ease 1.4s forwards;
+  z-index:5;
+}
+
+.scroll-track {
+  width:40px; height:1px;
+  background:rgba(200,160,74,0.3);
+  position:relative;
+  overflow:hidden;
+}
+
+.scroll-thumb {
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background:var(--gold);
+  animation: scrollTrack 2s ease-in-out infinite 1.5s;
+}
+
+@keyframes scrollTrack {
+  0% { left:-100%; }
+  50% { left:0%; }
+  100% { left:100%; }
+}
+
+.scroll-text {
+  font-size:0.6rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+}
+
+/* ── OVERVIEW BAND ── */
+.overview-band {
+  background:var(--ink-2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0.9rem 2rem;
+  display:flex;
+  justify-content:center;
+  gap:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.overview-band::-webkit-scrollbar { display:none; }
+
+.ob-item {
+  display:flex;
+  align-items:center;
+  gap:0.55rem;
+  padding:0 1.8rem;
+  border-right:1px solid rgba(200,160,74,0.12);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ob-item:last-child { border-right:none; }
+
+.ob-icon {
+  width:18px; height:18px;
+  flex-shrink:0;
+}
+
+.ob-text {
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  color:var(--text-muted);
+}
+
+/* ── DAY NAV ── */
+.day-nav {
+  position:sticky;
+  top:44px;
+  z-index:100;
+  background:rgba(10,9,8,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(200,160,74,0.1);
+  display:flex;
+  justify-content:center;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar { display:none; }
+
+.day-nav-btn {
+  position:relative;
+  padding:0.9rem 1.5rem;
+  background:none;
+  border:none;
+  color:var(--text-dim);
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:0.68rem;
+  font-weight:400;
+  letter-spacing:0.1em;
+  cursor:pointer;
+  transition:color 0.25s;
+  white-space:nowrap;
+  border-bottom:1.5px solid transparent;
+}
+
+.day-nav-btn::after {
+  content:'';
+  position:absolute;
+  bottom:-1px; left:1.5rem; right:1.5rem;
+  height:1.5px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.day-nav-btn:hover { color:var(--text); }
+.day-nav-btn.active { color:var(--gold); }
+.day-nav-btn.active::after { transform:scaleX(1); }
+
+/* ── MAIN CONTAINER ── */
+.container {
+  max-width:920px;
+  margin:0 auto;
+  padding:0 clamp(1rem,4vw,2.5rem);
+  position:relative;
+  z-index:1;
+}
+
+/* ── DAY SECTION ── */
+.day-section {
+  padding:5rem 0 4rem;
+  border-bottom:1px solid rgba(200,160,74,0.08);
+  position:relative;
+}
+
+/* Large day number background */
+.day-section::before {
+  content:attr(data-day);
+  position:absolute;
+  top:3.5rem; right:0;
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(5rem,14vw,10rem);
+  font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,160,74,0.05);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+
+.day-header {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:2rem;
+  align-items:start;
+  margin-bottom:2.5rem;
+}
+
+.day-badge {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.2rem;
+  padding-top:0.3rem;
+}
+
+.day-num-wrap {
+  position:relative;
+}
+
+.day-num {
+  font-family:'Shippori Mincho',serif;
+  font-size:3.2rem;
+  font-weight:800;
+  color:var(--gold);
+  line-height:1;
+  display:block;
+}
+
+.day-label-text {
+  font-size:0.55rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+  display:block;
+  text-align:center;
+}
+
+.day-vline {
+  width:1px;
+  height:32px;
+  background:linear-gradient(to bottom, var(--gold-lt), transparent);
+  opacity:0.4;
+  margin:0.5rem auto 0;
+}
+
+.day-info {}
+
+.day-date {
+  font-size:0.62rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:0.5rem;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+
+.day-date::before {
+  content:'';
+  width:20px; height:1px;
+  background:var(--gold);
+  opacity:0.5;
+}
+
+.day-title {
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(1.2rem,2.8vw,1.75rem);
+  font-weight:700;
+  line-height:1.3;
+  margin-bottom:0.7rem;
+  color:var(--text);
+}
+
+.day-summary {
+  font-size:0.82rem;
+  color:var(--text-muted);
+  line-height:1.8;
+  max-width:60ch;
+}
+
+/* ── PHOTO GRID ── */
+.photo-grid {
+  display:grid;
+  gap:3px;
+  margin-bottom:2.5rem;
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.photo-grid.g1 { grid-template-columns:1fr; }
+.photo-grid.g2 { grid-template-columns:1fr 1fr; }
+.photo-grid.g3 { grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr; }
+.photo-grid.g3 .photo-wrap:first-child { grid-row:1/3; }
+
+.photo-wrap {
+  position:relative;
+  overflow:hidden;
+  background:var(--ink-3);
+}
+.photo-grid.g1 .photo-wrap { aspect-ratio:21/8; }
+.photo-grid.g2 .photo-wrap { aspect-ratio:4/3; }
+.photo-grid.g3 .photo-wrap { aspect-ratio:4/3; }
+.photo-grid.g3 .photo-wrap:first-child { aspect-ratio:auto; min-height:280px; }
+
+.photo-wrap img {
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  filter:brightness(0.85) saturate(0.9);
+}
+.photo-wrap:hover img { transform:scale(1.04); filter:brightness(0.95) saturate(1); }
+
+.photo-fallback {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.photo-cap {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding:1.2rem 1rem 0.7rem;
+  background:linear-gradient(transparent, rgba(10,9,8,0.85));
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:rgba(232,224,208,0.7);
+}
+
+/* Gold overlay on hover */
+.photo-wrap::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(200,160,74,0);
+  transition:border-color 0.3s;
+  pointer-events:none;
+}
+.photo-wrap:hover::after {
+  border-color:rgba(200,160,74,0.25);
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  position:relative;
+  padding-left:2rem;
+  margin-bottom:2rem;
+}
+
+.timeline::before {
+  content:'';
+  position:absolute;
+  left:4px; top:12px; bottom:12px;
+  width:1px;
+  background:linear-gradient(to bottom, var(--gold), rgba(200,160,74,0.2), transparent);
+}
+
+.tl-item {
+  position:relative;
+  padding:0 0 2rem 1.8rem;
+}
+.tl-item:last-child { padding-bottom:0; }
+
+.tl-dot {
+  position:absolute;
+  left:-1.95rem; top:8px;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--ink-3);
+  border:1.5px solid var(--text-dim);
+}
+
+.tl-dot.special {
+  border-color:var(--gold);
+  background:var(--gold);
+  box-shadow:0 0 8px rgba(200,160,74,0.4);
+  width:10px; height:10px;
+  top:7px; left:-2rem;
+}
+
+.tl-time {
+  font-size:0.62rem;
+  letter-spacing:0.2em;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:0.25rem;
+  font-variant-numeric:tabular-nums;
+}
+
+.tl-title {
+  font-family:'Shippori Mincho',serif;
+  font-size:0.97rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:0.3rem;
+  line-height:1.4;
+}
+
+.tl-desc {
+  font-size:0.8rem;
+  color:var(--text-muted);
+  line-height:1.75;
+}
+
+.tl-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:0.3rem;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  padding:0.2rem 0.65rem;
+  margin-top:0.5rem;
+  border-radius:2px;
+  background:rgba(200,160,74,0.08);
+  border:1px solid rgba(200,160,74,0.2);
+  color:var(--gold);
+}
+
+.tl-tag.warn {
+  background:rgba(232,137,154,0.08);
+  border-color:rgba(232,137,154,0.3);
+  color:var(--sakura-lt);
+}
+
+/* ── MAP EMBED ── */
+.map-embed-wrap {
+  margin:2rem 0 0.5rem;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border);
+  position:relative;
+}
+.map-embed-wrap iframe {
+  width:100%; height:300px;
+  border:none;
+  display:block;
+  filter:grayscale(0.3) brightness(0.9);
+}
+.map-embed-label {
+  position:absolute;
+  top:10px; left:12px;
+  background:rgba(10,9,8,0.88);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--border);
+  border-radius:2px;
+  padding:4px 12px;
+  font-size:0.65rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gold);
+  pointer-events:none;
+}
+
+/* ── PLACE CARDS ── */
+.place-cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;
+  margin-top:1.5rem;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+
+.place-card {
+  background:var(--ink-2);
+  padding:1.2rem 1.3rem;
+  border-right:1px solid rgba(200,160,74,0.08);
+  transition:background 0.2s;
+}
+.place-card:last-child { border-right:none; }
+.place-card:hover { background:var(--ink-3); }
+
+.place-card-name {
+  font-family:'Shippori Mincho',serif;
+  font-size:0.88rem;
+  font-weight:700;
+  margin-bottom:0.5rem;
+  color:var(--text);
+}
+
+.place-card-info {
+  font-size:0.74rem;
+  color:var(--text-muted);
+  line-height:1.65;
+}
+
+.place-card-link {
+  display:inline-block;
+  margin-top:0.7rem;
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-decoration:none;
+  border-bottom:1px solid rgba(200,160,74,0.3);
+  transition:border-color 0.2s;
+}
+.place-card-link:hover { border-color:var(--gold); }
+
+/* ── SECTION DIVIDER ── */
+.gold-divider {
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin:1rem 0 0;
+  opacity:0.3;
+}
+.gold-divider::before,
+.gold-divider::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:var(--gold);
+}
+.gold-divider-icon {
+  font-family:'Shippori Mincho',serif;
+  font-size:0.7rem;
+  color:var(--gold);
+  letter-spacing:0.2em;
+}
+
+/* ── CHECKLIST ── */
+.checklist-box {
+  background:var(--ink-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin:4rem 0 0;
+}
+
+.checklist-header {
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:0.8rem;
+}
+
+.checklist-header-icon {
+  width:28px; height:28px;
+  border:1px solid var(--border);
+  border-radius:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.checklist-title {
+  font-family:'Shippori Mincho',serif;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--gold);
+  letter-spacing:0.05em;
+}
+
+.checklist-item {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:1.2rem;
+  padding:1.2rem 2rem;
+  border-bottom:1px solid rgba(200,160,74,0.06);
+  transition:background 0.2s;
+}
+.checklist-item:last-child { border-bottom:none; }
+.checklist-item:hover { background:var(--fog-2); }
+
+.check-status {
+  width:20px; height:20px;
+  border-radius:2px;
+  flex-shrink:0;
+  margin-top:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.6rem;
+  font-weight:700;
+}
+
+.check-status.done {
+  background:rgba(74,124,106,0.15);
+  border:1px solid rgba(74,124,106,0.4);
+  color:#6aab8a;
+}
+
+.check-status.todo {
+  background:rgba(232,137,154,0.1);
+  border:1px solid rgba(232,137,154,0.35);
+  color:var(--sakura);
+}
+
+.check-status.info {
+  background:rgba(200,160,74,0.1);
+  border:1px solid rgba(200,160,74,0.3);
+  color:var(--gold);
+}
+
+.checklist-text strong {
+  display:block;
+  font-size:0.84rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:0.25rem;
+}
+
+.checklist-sub {
+  font-size:0.75rem;
+  color:var(--text-muted);
+  line-height:1.6;
+}
+
+.checklist-link {
+  color:var(--gold);
+  text-decoration:none;
+  border-bottom:1px solid rgba(200,160,74,0.3);
+  transition:border-color 0.2s;
+}
+.checklist-link:hover { border-color:var(--gold); }
+
+/* ── MAP CTA BOX ── */
+.map-cta-box {
+  background:var(--ink-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin:1.5rem 0 0;
+}
+
+.map-cta-inner {
+  padding:1.5rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  flex-wrap:wrap;
+}
+
+.map-cta-label {
+  font-family:'Shippori Mincho',serif;
+  font-size:0.95rem;
+  font-weight:700;
+  color:var(--text);
+}
+
+.map-cta-sub {
+  font-size:0.72rem;
+  color:var(--text-muted);
+  margin-top:0.2rem;
+}
+
+.btn-gold {
+  display:inline-flex;
+  align-items:center;
+  gap:0.6rem;
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  padding:0.6rem 1.4rem;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:0.68rem;
+  font-weight:500;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  border-radius:2px;
+  transition:all 0.25s;
+  white-space:nowrap;
+}
+.btn-gold:hover {
+  background:var(--gold);
+  color:var(--ink);
+}
+.btn-gold:active { transform:scale(0.98); }
+
+/* ── COUPON SECTION ── */
+.coupon-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin:1.5rem 0 0;
+}
+
+.coupon-card {
+  background:var(--ink-2);
+  padding:1.2rem 1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  border-right:1px solid rgba(200,160,74,0.08);
+  transition:background 0.2s;
+}
+.coupon-card:last-child { border-right:none; }
+.coupon-card:hover { background:var(--ink-3); }
+
+.coupon-badge {
+  display:inline-block;
+  font-size:0.55rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:0.15rem 0.55rem;
+  border:1px solid rgba(200,160,74,0.3);
+  border-radius:1px;
+  color:var(--gold);
+  width:fit-content;
+}
+
+.coupon-name {
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--text);
+  font-family:'Shippori Mincho',serif;
+}
+
+.coupon-desc {
+  font-size:0.73rem;
+  color:var(--text-muted);
+  flex:1;
+}
+
+/* ── FOOTER ── */
+footer {
+  background:var(--ink-2);
+  border-top:1px solid var(--border);
+  padding:3rem 2rem;
+  text-align:center;
+  margin-top:6rem;
+  position:relative;
+  overflow:hidden;
+}
+
+footer::before {
+  content:'福岡';
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Shippori Mincho',serif;
+  font-size:9rem;
+  font-weight:800;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,160,74,0.04);
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+.footer-top {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.footer-line { width:60px; height:1px; background:var(--border); }
+
+.footer-title {
+  font-family:'Shippori Mincho',serif;
+  font-size:1.1rem;
+  color:var(--gold);
+  letter-spacing:0.1em;
+}
+
+.footer-sub {
+  font-size:0.7rem;
+  color:var(--text-dim);
+  letter-spacing:0.15em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; }
+  to   { opacity:1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:768px) {
   .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #fdf0f0;
-    padding-top: 48px;
-  }
-
-  /* 봄 그라디언트 배경 */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 15% 20%, rgba(255,192,200,0.45) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 85% 10%, rgba(255,218,185,0.35) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 70% at 50% 100%, rgba(200,230,180,0.25) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,180,200,0.3) 0%, transparent 50%),
-      linear-gradient(160deg, #fff5f5 0%, #fdf0e8 50%, #f5f8f0 100%);
-  }
-
-  /* 벚꽃 꽃잎 SVG */
-  .petals {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .petal {
-    position: absolute;
-    opacity: 0;
-    animation: fall linear infinite;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(-60px) rotate(0deg) translateX(0); opacity: 0; }
-    5% { opacity: 0.7; }
-    90% { opacity: 0.5; }
-    100% { transform: translateY(110vh) rotate(720deg) translateX(60px); opacity: 0; }
-  }
-
-  /* 장식 원형 */
-  .hero-circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.12;
-  }
-
-  .hero-circle-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, #f4a0a0, transparent);
-    top: -100px; left: -100px;
-  }
-
-  .hero-circle-2 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, #a8d8a8, transparent);
-    bottom: -80px; right: -80px;
-    opacity: 0.15;
-  }
-
-  .hero-circle-3 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, #f4c0a0, transparent);
-    top: 30%; right: 8%;
-    opacity: 0.2;
-  }
-
-  /* 상단 장식 가지 */
-  .branch-deco {
-    position: absolute;
-    top: 48px; left: 0; right: 0;
-    height: 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 2rem;
-    pointer-events: none;
-  }
-
-  .branch-svg {
-    opacity: 0.18;
-  }
-
-  .hero-content {
-    position: relative;
-    text-align: center;
-    padding: 2rem 1.5rem;
-    max-width: 700px;
-  }
-
-  .hero-family-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(232,160,160,0.4);
-    border-radius: 100px;
-    padding: 0.3rem 1rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    color: var(--pink-deep);
-    margin-bottom: 1.5rem;
-    backdrop-filter: blur(8px);
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 11vw, 6.5rem);
-    color: var(--ink);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.8rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
-  }
-
-  .hero-title-jp {
-    display: block;
-    font-style: italic;
-    color: var(--pink-deep);
-    font-size: 0.65em;
-    margin-bottom: 0.2em;
-  }
-
-  .hero-title-kr {
-    display: block;
-    letter-spacing: -0.03em;
-  }
-
-  .hero-subtitle {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-    color: var(--muted);
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
-    letter-spacing: 0.05em;
-  }
-
-  /* 메타 카드들 */
-  .hero-cards {
-    display: flex;
-    gap: 0.8rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
-  }
-
-  .hero-card {
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(232,160,160,0.25);
-    border-radius: 12px;
-    padding: 0.8rem 1.2rem;
-    text-align: center;
-    min-width: 100px;
-    box-shadow: 0 4px 20px rgba(200,120,120,0.08);
-  }
-
-  .hero-card-icon { font-size: 1.3rem; display: block; margin-bottom: 0.2rem; }
-  .hero-card-label { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--muted); display: block; }
-  .hero-card-value { font-family: 'Noto Serif KR', serif; font-size: 0.9rem; font-weight: 600; color: var(--ink); display: block; margin-top: 0.1rem; }
-
-  /* 스크롤 힌트 */
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--muted);
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeUp 1s ease 1.2s forwards;
-  }
-
-  .scroll-line {
-    width: 1px;
-    height: 36px;
-    background: linear-gradient(to bottom, var(--pink), transparent);
-    animation: scrollAnim 1.5s ease-in-out infinite 1.5s;
-  }
-
-  @keyframes scrollAnim {
-    0%, 100% { transform: scaleY(1); opacity: 0.8; }
-    50% { transform: scaleY(0.5); opacity: 0.3; }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── OVERVIEW STRIP ── */
-  .overview {
-    background: var(--pink-deep);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .overview-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: rgba(255,248,245,0.95);
-    font-size: 0.82rem;
-  }
-
-  /* ── DAY NAV ── */
-  .day-nav {
-    position: sticky;
-    top: 48px;
-    z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid rgba(232,160,160,0.2);
-    display: flex;
-    justify-content: center;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .day-nav::-webkit-scrollbar { display: none; }
-
-  .day-nav-btn {
-    padding: 0.85rem 1.3rem;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.2s;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-  }
-
-  .day-nav-btn:hover,
-  .day-nav-btn.active {
-    color: var(--pink-deep);
-    border-bottom-color: var(--pink-deep);
-    font-weight: 500;
-  }
-
-  /* ── CONTAINER ── */
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* ── DAY SECTION ── */
-  .day-section {
-    padding: 4.5rem 0 3rem;
-    border-bottom: 1px solid rgba(232,160,160,0.15);
-  }
-
-  .day-section:last-child { border-bottom: none; }
-
-  .day-header {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    align-items: start;
-    margin-bottom: 2rem;
-  }
-
-  .day-badge {
-    background: var(--pink-light);
-    border: 1.5px solid var(--pink);
-    border-radius: 12px;
-    padding: 0.8rem 1rem;
-    text-align: center;
-    min-width: 65px;
-  }
-
-  .day-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--pink-deep);
-    line-height: 1;
-    display: block;
-  }
-
-  .day-label {
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: block;
-  }
-
-  .day-date {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.3rem;
-  }
-
-  .day-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-    font-weight: 600;
-    line-height: 1.35;
-    margin-bottom: 0.5rem;
-    color: var(--ink);
-  }
-
-  .day-summary {
-    font-size: 0.87rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ── PHOTO GRID ── */
-  .photo-grid {
-    display: grid;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .photo-grid.g1 { grid-template-columns: 1fr; }
-  .photo-grid.g2 { grid-template-columns: 1fr 1fr; }
-  .photo-grid.g3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
-  .photo-grid.g3 .photo-wrap:first-child { grid-row: 1 / 3; }
-
-  .photo-wrap { position:relative;
-    position: relative;
-    overflow: hidden;
-    background: var(--cream);
-  }
-
-  .photo-grid.g1 .photo-wrap { position:relative; aspect-ratio: 16/7; }
-  .photo-grid.g2 .photo-wrap { position:relative; aspect-ratio: 4/3; }
-  .photo-grid.g3 .photo-wrap { position:relative; aspect-ratio: 4/3; }
-  .photo-grid.g3 .photo-wrap:first-child { aspect-ratio: auto; min-height: 260px; }
-
-  .photo-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 10px;
-    transition: transform 0.3s ease;
-    border-radius: inherit;
-  }
-  .photo-wrap:hover .photo-placeholder { transform: scale(1.03); }
-  .ph-icon { font-size: 2.8rem; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,.3)); }
-  .ph-label {
-    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,.5);
-    text-align: center; padding: 0 8px;
-  }
-  .photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    display: block;
-  }
-
-  .photo-wrap:hover img { transform: scale(1.04); }
-
-  .photo-cap {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 0.5rem 0.8rem;
-    background: linear-gradient(transparent, rgba(45,27,27,0.65));
-    color: rgba(255,248,245,0.92);
-    font-size: 0.68rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* ── TIMELINE ── */
-  .timeline {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 8px; bottom: 8px;
-    width: 1.5px;
-    background: linear-gradient(to bottom, var(--pink), var(--pink-light), rgba(232,160,160,0.1));
-  }
-
-  .tl-item {
-    position: relative;
-    padding: 0 0 1.6rem 1.5rem;
-  }
-
-  .tl-item:last-child { padding-bottom: 0; }
-
-  .tl-dot {
-    position: absolute;
-    left: -1.5rem;
-    top: 6px;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--pink);
-    border: 2px solid var(--white);
-    box-shadow: 0 0 0 1.5px var(--pink);
-  }
-
-  .tl-dot.special {
-    background: var(--pink-deep);
-    box-shadow: 0 0 0 1.5px var(--pink-deep);
-    width: 11px; height: 11px;
-    top: 5px;
-    left: -1.55rem;
-  }
-
-  .tl-time {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    color: var(--pink-deep);
-    margin-bottom: 0.15rem;
-  }
-
-  .tl-title {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 0.98rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-    color: var(--ink);
-  }
-
-  .tl-desc {
-    font-size: 0.83rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .tl-tag {
-    display: inline-block;
-    font-size: 0.63rem;
-    letter-spacing: 0.08em;
-    padding: 0.15rem 0.55rem;
-    margin-top: 0.4rem;
-    border-radius: 100px;
-    background: var(--pink-light);
-    color: var(--pink-deep);
-  }
-
-  .tl-tag.warn {
-    background: rgba(201,107,107,0.12);
-    color: var(--pink-deep);
-    border: 1px solid rgba(201,107,107,0.3);
-  }
-
-  /* ── MAP BUTTON ── */
-  .map-btn-wrap {
-    margin: 1.2rem 0 0.5rem;
-  }
-
-  .map-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--pink-light);
-    border: 1px solid var(--pink);
-    color: var(--pink-deep);
-    padding: 0.6rem 1.2rem;
-    border-radius: 100px;
-    font-size: 0.78rem;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-
-
-  .map-embed-wrap {
-    margin: 1.5rem 0 0.5rem;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(196,69,105,.15);
-    border: 1px solid var(--pink);
-    position: relative;
-  }
-  .map-embed-wrap iframe {
-    width: 100%;
-    height: 320px;
-    border: none;
-    display: block;
-  }
-  .map-embed-label {
-    position: absolute;
-    top: 10px; left: 12px;
-    background: rgba(255,255,255,.92);
-    backdrop-filter: blur(4px);
-    border-radius: 100px;
-    padding: 4px 12px;
-    font-size: .72rem;
-    font-weight: 600;
-    color: var(--pink-deep);
-    pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  }
-  .map-btn:hover {
-    background: var(--pink-deep);
-    color: var(--white);
-    border-color: var(--pink-deep);
-  }
-
-  /* ── PLACE CARDS ── */
-  .place-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.8rem;
-    margin-top: 1.2rem;
-  }
-
-  .place-card {
-    background: var(--white);
-    border: 1px solid rgba(232,160,160,0.25);
-    border-radius: 10px;
-    padding: 1rem 1.1rem;
-    border-left: 3px solid var(--pink);
-  }
-
-  .place-card-name {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    color: var(--ink);
-  }
-
-  .place-card-info {
-    font-size: 0.76rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .place-card-link {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-size: 0.7rem;
-    color: var(--pink-deep);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(201,107,107,0.3);
-  }
-
-  /* ── CHECKLIST ── */
-  .checklist-box {
-    background: linear-gradient(135deg, #fff0f0, #fff8f0);
-    border: 1px solid rgba(232,160,160,0.3);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 4rem 0 0;
-  }
-
-  .checklist-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--pink-deep);
-    margin-bottom: 1.2rem;
-  }
-
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(232,160,160,0.15);
-    font-size: 0.85rem;
-    color: var(--ink);
-  }
-
-  .checklist-item:last-child { border-bottom: none; }
-
-  .check-box {
-    width: 18px; height: 18px;
-    border: 1.5px solid var(--pink);
-    border-radius: 4px;
-    flex-shrink: 0;
-    margin-top: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.55rem;
-    color: var(--pink-deep);
-  }
-
-  .checklist-item strong { display: block; margin-bottom: 0.2rem; }
-  .checklist-sub { font-size: 0.78rem; color: var(--muted); }
-  .checklist-link { color: var(--pink-deep); text-decoration: none; border-bottom: 1px solid rgba(201,107,107,0.3); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--pink-deep);
-    color: rgba(255,248,245,0.7);
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    margin-top: 3rem;
-  }
-
-  footer strong { color: rgba(255,248,245,0.95); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .top-bar { overflow-x: auto; justify-content: flex-start; }
-    .top-bar-item { flex-shrink: 0; padding: 0 1rem; }
-    .overview { gap: 1rem; }
-    .photo-grid.g3 {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-    }
-    .photo-grid.g3 .photo-wrap:first-child { grid-row: auto; min-height: auto; aspect-ratio: 4/3; }
-    .day-header { grid-template-columns: 1fr; }
-    .day-badge { width: fit-content; flex-direction: row; display: flex; align-items: baseline; gap: 0.5rem; padding: 0.5rem 0.8rem; }
-    .hero-cards { gap: 0.5rem; }
-    .hero-card { padding: 0.6rem 0.8rem; min-width: 80px; }
-  }
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    min-height:100dvh;
+  }
+  .hero-left {
+    padding:5rem 1.5rem 3rem;
+    justify-content:flex-end;
+  }
+  .hero-right {
+    display:none;
+  }
+  .hero-divider { display:none; }
+  .kanji-bg { display:none; }
+  .top-bar {
+    overflow-x:auto;
+    justify-content:flex-start;
+  }
+  .top-bar-item { flex-shrink:0; padding:0 1rem; }
+  .day-header { grid-template-columns:1fr; gap:0.8rem; }
+  .day-badge { flex-direction:row; align-items:baseline; gap:0.5rem; }
+  .day-vline { display:none; }
+  .photo-grid.g3 {
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+  }
+  .photo-grid.g3 .photo-wrap:first-child { grid-row:auto; min-height:auto; aspect-ratio:16/9; }
+  .photo-grid.g2 { grid-template-columns:1fr; }
+  .photo-grid.g2 .photo-wrap { aspect-ratio:16/9; }
+  .checklist-item { grid-template-columns:auto 1fr; padding:1rem 1.2rem; }
+  .checklist-header { padding:1.2rem 1.2rem; }
+  .overview-band { justify-content:flex-start; }
+  .map-cta-inner { flex-direction:column; align-items:flex-start; }
+  .day-section::before { display:none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ── STICKY TOP BAR ── -->
+<div class="kanji-bg">후쿠오카の旅桜</div>
+
+<!-- ── TOP BAR ── -->
 <div class="top-bar">
   <div class="top-bar-item">
-    <span class="top-bar-label">출발까지</span>
-    <span class="top-bar-value" id="dday-text">계산중</span>
+    <span class="top-bar-label">D-DAY</span>
+    <span class="dday-badge" id="dday-text"><span class="loading-ring"></span></span>
   </div>
   <div class="top-bar-item">
-    <span>🇯🇵</span>
-    <span class="top-bar-label">엔화</span>
-    <span class="rate-value" id="rate-val">
-      <span class="loading-dot"></span>
-    </span>
-    <span class="rate-change" id="rate-change"></span>
+    <span class="top-bar-label">JPY/KRW</span>
+    <span class="rate-live" id="rate-val"><span class="loading-ring"></span></span>
   </div>
   <div class="top-bar-item">
-    <span class="top-bar-label">100엔 =</span>
+    <span class="top-bar-label">100엔</span>
     <span class="top-bar-value" id="rate-100">—</span>
+  </div>
+  <div class="top-bar-item">
+    <span class="top-bar-label">체류</span>
+    <span class="top-bar-value">4박 5일</span>
   </div>
 </div>
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-divider"></div>
 
-  <!-- 떨어지는 벚꽃 꽃잎 -->
-  <div class="petals" id="petals"></div>
-
-  <!-- 장식 원형 -->
-  <div class="hero-circle hero-circle-1"></div>
-  <div class="hero-circle hero-circle-2"></div>
-  <div class="hero-circle hero-circle-3"></div>
-
-  <!-- 상단 나뭇가지 장식 -->
-  <div class="branch-deco">
-    <svg class="branch-svg" width="200" height="100" viewBox="0 0 200 100">
-      <path d="M0,80 Q50,60 80,40 Q100,25 130,10" stroke="#c96b6b" stroke-width="2" fill="none"/>
-      <circle cx="85" cy="38" r="5" fill="#f4a0b0"/>
-      <circle cx="105" cy="28" r="4" fill="#f4b0c0"/>
-      <circle cx="125" cy="16" r="6" fill="#f4a0b0"/>
-      <circle cx="70" cy="45" r="4" fill="#f9c0d0"/>
-      <circle cx="55" cy="55" r="5" fill="#f4a0b0"/>
-      <path d="M130,10 Q150,5 160,20" stroke="#c96b6b" stroke-width="1.5" fill="none"/>
-      <circle cx="155" cy="12" r="3" fill="#f9c0d0"/>
-      <circle cx="162" cy="22" r="4" fill="#f4a0b0"/>
-    </svg>
-    <svg class="branch-svg" width="200" height="100" viewBox="0 0 200 100" style="transform:scaleX(-1)">
-      <path d="M0,80 Q50,60 80,40 Q100,25 130,10" stroke="#c96b6b" stroke-width="2" fill="none"/>
-      <circle cx="85" cy="38" r="5" fill="#f4a0b0"/>
-      <circle cx="105" cy="28" r="4" fill="#f4b0c0"/>
-      <circle cx="125" cy="16" r="6" fill="#f4a0b0"/>
-      <circle cx="70" cy="45" r="4" fill="#f9c0d0"/>
-      <circle cx="55" cy="55" r="5" fill="#f4a0b0"/>
-    </svg>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-family-tag">
-      🌸 &nbsp; 우리 가족 여행 2026 &nbsp; 🌸
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Family Trip · Spring 2026 · Kyushu</span>
     </div>
 
-    <h1 class="hero-title">
-      <span class="hero-title-jp">Fukuoka</span>
-      <span class="hero-title-kr">후쿠오카</span>
-    </h1>
+    <div class="hero-title-block">
+      <span class="hero-title-jp">福<span class="hero-title-accent">岡</span></span>
+      <span class="hero-title-kr">후쿠오카 봄 가족여행</span>
+    </div>
 
-    <p class="hero-subtitle">봄 벚꽃 시즌 · 4월 3일 – 7일 · 4박 5일</p>
+    <div class="hero-meta">
+      <div class="hero-meta-row">
+        <div class="hero-meta-dot"></div>
+        <span>날짜</span>
+        <span class="hero-meta-val">2026년 4월 3일 — 7일</span>
+      </div>
+      <div class="hero-meta-row">
+        <div class="hero-meta-dot"></div>
+        <span>인원</span>
+        <span class="hero-meta-val">8명 대가족</span>
+      </div>
+      <div class="hero-meta-row">
+        <div class="hero-meta-dot"></div>
+        <span>숙소</span>
+        <span class="hero-meta-val">크로스 라이프 텐진</span>
+      </div>
+      <div class="hero-meta-row">
+        <div class="hero-meta-dot"></div>
+        <span>날씨</span>
+        <span class="hero-meta-val">15–18°C · 벚꽃 만개 시즌</span>
+      </div>
+    </div>
 
-    <div class="hero-cards">
-      <div class="hero-card">
-        <span class="hero-card-icon">👨‍👩‍👧‍👦</span>
-        <span class="hero-card-label">인원</span>
-        <span class="hero-card-value">8명 대가족</span>
-      </div>
-      <div class="hero-card">
-        <span class="hero-card-icon">🏨</span>
-        <span class="hero-card-label">숙소</span>
-        <span class="hero-card-value">크로스 라이프 텐진</span>
-      </div>
-      <div class="hero-card">
-        <span class="hero-card-icon">✈️</span>
-        <span class="hero-card-label">항공</span>
-        <span class="hero-card-value">도착 11:30 / 출발 12:30</span>
-      </div>
-      <div class="hero-card">
-        <span class="hero-card-icon">🌡️</span>
-        <span class="hero-card-label">날씨</span>
-        <span class="hero-card-value">15–18°C · 겉옷 필수</span>
-      </div>
+    <div class="hero-tags">
+      <span class="hero-tag gold">벚꽃 시즌</span>
+      <span class="hero-tag">유후인 투어</span>
+      <span class="hero-tag">마린월드</span>
+      <span class="hero-tag">나카스 야타이</span>
+      <span class="hero-tag">피규어샵</span>
     </div>
   </div>
 
-  <div class="scroll-hint">
-    <span>scroll</span>
-    <div class="scroll-line"></div>
+  <!-- Right panel -->
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <canvas id="sakura-canvas"></canvas>
+    <div class="hero-circle-art"></div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-track"><div class="scroll-thumb"></div></div>
+    <span class="scroll-text">scroll</span>
   </div>
 </section>
 
-<!-- ── OVERVIEW STRIP ── -->
-<div class="overview">
-  <div class="overview-item">🌸 벚꽃 축제 시즌</div>
-  <div class="overview-item">🎡 유후인 버스투어</div>
-  <div class="overview-item">🐬 마린월드 돌고래 쇼</div>
-  <div class="overview-item">🏮 나카스 야타이</div>
-  <div class="overview-item">🎌 중고 피규어샵</div>
+<!-- ── OVERVIEW BAND ── -->
+<div class="overview-band">
+  <div class="ob-item">
+    <svg class="ob-icon" viewBox="0 0 18 18" fill="none">
+      <circle cx="9" cy="9" r="7" stroke="#c8a04a" stroke-width="1"/>
+      <path d="M9 5c0 0-3 2-3 4s3 4 3 4 3-2 3-4-3-4-3-4z" fill="#c8a04a" opacity="0.4"/>
+    </svg>
+    <span class="ob-text">벚꽃 축제 시즌</span>
+  </div>
+  <div class="ob-item">
+    <svg class="ob-icon" viewBox="0 0 18 18" fill="none">
+      <rect x="2" y="5" width="14" height="9" rx="1" stroke="#c8a04a" stroke-width="1"/>
+      <path d="M5 5V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v1" stroke="#c8a04a" stroke-width="1"/>
+    </svg>
+    <span class="ob-text">유후인 버스투어</span>
+  </div>
+  <div class="ob-item">
+    <svg class="ob-icon" viewBox="0 0 18 18" fill="none">
+      <path d="M3 13c0-3 2-5 6-5s6 2 6 5" stroke="#c8a04a" stroke-width="1"/>
+      <circle cx="9" cy="6" r="3" stroke="#c8a04a" stroke-width="1"/>
+    </svg>
+    <span class="ob-text">마린월드</span>
+  </div>
+  <div class="ob-item">
+    <svg class="ob-icon" viewBox="0 0 18 18" fill="none">
+      <rect x="3" y="7" width="12" height="7" rx="0.5" stroke="#c8a04a" stroke-width="1"/>
+      <path d="M6 7V5a3 3 0 0 1 6 0v2" stroke="#c8a04a" stroke-width="1"/>
+    </svg>
+    <span class="ob-text">나카스 야타이</span>
+  </div>
+  <div class="ob-item">
+    <svg class="ob-icon" viewBox="0 0 18 18" fill="none">
+      <path d="M5 3h8l2 4H3L5 3z" stroke="#c8a04a" stroke-width="1"/>
+      <rect x="3" y="7" width="12" height="8" stroke="#c8a04a" stroke-width="1"/>
+      <line x1="9" y1="7" x2="9" y2="15" stroke="#c8a04a" stroke-width="1"/>
+    </svg>
+    <span class="ob-text">중고 피규어샵</span>
+  </div>
 </div>
 
 <!-- ── DAY NAV ── -->
 <nav class="day-nav">
-  <button class="day-nav-btn active" onclick="goDay('day1',this)">🌸 4/3 금 · 도착</button>
-  <button class="day-nav-btn" onclick="goDay('day2',this)">🐬 4/4 토 · 마린월드</button>
-  <button class="day-nav-btn" onclick="goDay('day3',this)">🚌 4/5 일 · 유후인</button>
-  <button class="day-nav-btn" onclick="goDay('day4',this)">🎌 4/6 월 · 피규어·쇼핑</button>
-  <button class="day-nav-btn" onclick="goDay('day5',this)">✈️ 4/7 화 · 귀국</button>
+  <button class="day-nav-btn active" onclick="goDay('day1',this)">04.03 금 · 도착</button>
+  <button class="day-nav-btn" onclick="goDay('day2',this)">04.04 토 · 마린월드</button>
+  <button class="day-nav-btn" onclick="goDay('day3',this)">04.05 일 · 유후인</button>
+  <button class="day-nav-btn" onclick="goDay('day4',this)">04.06 월 · 피규어·쇼핑</button>
+  <button class="day-nav-btn" onclick="goDay('day5',this)">04.07 화 · 귀국</button>
 </nav>
 
 <div class="container">
 
-  <!-- ── DAY 1 ── -->
-  <section class="day-section" id="day1">
+  <!-- ══ DAY 1 ══ -->
+  <section class="day-section" id="day1" data-day="01">
     <div class="day-header">
       <div class="day-badge">
-        <span class="day-num">1</span>
-        <span class="day-label">Day</span>
+        <div class="day-num-wrap">
+          <span class="day-num">01</span>
+        </div>
+        <span class="day-label-text">Day</span>
+        <div class="day-vline"></div>
       </div>
-      <div>
-        <p class="day-date">2026년 4월 3일 (금요일)</p>
+      <div class="day-info">
+        <div class="day-date">2026년 4월 3일 금요일</div>
         <h2 class="day-title">입국 · 텐진 워밍업 · 오호리 벚꽃 라이트업</h2>
         <p class="day-summary">도착 첫날은 가볍게. 텐진 지하상가로 몸 풀고 저녁엔 오호리 공원 벚꽃 라이트업으로 여행 분위기를 올려요.</p>
       </div>
     </div>
 
     <div class="photo-grid g3">
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Cherry_blossom_in_Fukuokazeki_sakura_park.JPG/960px-Cherry_blossom_in_Fukuokazeki_sakura_park.JPG" data-icon="🌸" data-bg="linear-gradient(135deg,#ffb7c5,#c44569)" data-label="오호리 공원 벚꽃 라이트업">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Cherry_blossom_in_Fukuokazeki_sakura_park.JPG/960px-Cherry_blossom_in_Fukuokazeki_sakura_park.JPG" data-icon="🌸" data-bg="linear-gradient(135deg,#1a0a12,#3d1f2d)" data-label="오호리 공원 벚꽃">
         <div class="photo-cap">오호리 공원 벚꽃 라이트업</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Tenjin-Chikagai_Shopping_Street_20181122.jpg/960px-Tenjin-Chikagai_Shopping_Street_20181122.jpg" data-icon="🛍️" data-bg="linear-gradient(135deg,#a8edea,#5f72bd)" data-label="텐진 지하상가">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Tenjin-Chikagai_Shopping_Street_20181122.jpg/960px-Tenjin-Chikagai_Shopping_Street_20181122.jpg" data-icon="⬡" data-bg="linear-gradient(135deg,#0a1020,#1a2540)" data-label="텐진 지하상가">
         <div class="photo-cap">텐진 지하상가</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cherry_blossom_festival_at_night.jpg/960px-Cherry_blossom_festival_at_night.jpg" data-icon="🌸🌙" data-bg="linear-gradient(135deg,#1a1a2e,#ff6b9d)" data-label="벚꽃 야경 산책">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cherry_blossom_festival_at_night.jpg/960px-Cherry_blossom_festival_at_night.jpg" data-icon="◈" data-bg="linear-gradient(135deg,#0a0618,#1a1030)" data-label="벚꽃 야경">
         <div class="photo-cap">벚꽃 야경 산책</div>
       </div>
     </div>
@@ -914,9 +1309,9 @@
       <div class="tl-item">
         <div class="tl-dot special"></div>
         <div class="tl-time">18:30</div>
-        <div class="tl-title">🌸 벚꽃 라이트업</div>
+        <div class="tl-title">벚꽃 라이트업</div>
         <div class="tl-desc">후쿠오카성 성벽 위에서 벚꽃 야경. 금요일 저녁이라 주말보다 여유로운 분위기.</div>
-        <span class="tl-tag">✨ 인생샷 포인트</span>
+        <span class="tl-tag">인생샷 포인트</span>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -927,38 +1322,36 @@
     </div>
 
     <div class="map-embed-wrap">
-      <iframe
-        src="https://maps.google.com/maps?q=%EC%98%A4%ED%98%B8%EB%A6%AC%EA%B3%B5%EC%9B%90%20%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&z=15&output=embed&hl=ko"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <div class="map-embed-label">📍 오호리 공원</div>
+      <iframe src="https://maps.google.com/maps?q=%EC%98%A4%ED%98%B8%EB%A6%AC%EA%B3%B5%EC%9B%90%20%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4&z=15&output=embed&hl=ko" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-embed-label">오호리 공원</div>
     </div>
   </section>
 
-  <!-- ── DAY 2 ── -->
-  <section class="day-section" id="day2">
+  <!-- ══ DAY 2 ══ -->
+  <section class="day-section" id="day2" data-day="02">
     <div class="day-header">
       <div class="day-badge">
-        <span class="day-num">2</span>
-        <span class="day-label">Day</span>
+        <div class="day-num-wrap">
+          <span class="day-num">02</span>
+        </div>
+        <span class="day-label-text">Day</span>
+        <div class="day-vline"></div>
       </div>
-      <div>
-        <p class="day-date">2026년 4월 4일 (토요일)</p>
+      <div class="day-info">
+        <div class="day-date">2026년 4월 4일 토요일</div>
         <h2 class="day-title">우미노나카미치 해변공원 · 마린월드 · 나카스 야타이</h2>
         <p class="day-summary">아이들 최고의 날. 오전 자연·동물 체험, 오후 수족관 쇼, 저녁은 포장마차 현지 분위기. 화요일 휴무인 해변공원을 토요일에 배치.</p>
       </div>
     </div>
 
     <div class="photo-grid g3">
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marine_World_Uminonakamichi_1.JPG/960px-Marine_World_Uminonakamichi_1.JPG" data-icon="🐬" data-bg="linear-gradient(135deg,#1fa2ff,#a6ffcb)" data-label="마린월드 돌고래 쇼">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marine_World_Uminonakamichi_1.JPG/960px-Marine_World_Uminonakamichi_1.JPG" data-icon="◉" data-bg="linear-gradient(135deg,#061420,#0f2535)" data-label="마린월드">
         <div class="photo-cap">마린월드 돌고래 쇼</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Kangaroos_in_Animal_Forest%2C_Umino_Nakamichi_Seaside_Park.JPG/960px-Kangaroos_in_Animal_Forest%2C_Umino_Nakamichi_Seaside_Park.JPG" data-icon="🚲" data-bg="linear-gradient(135deg,#f7971e,#ffd200)" data-label="우미노나카미치 해변공원">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Kangaroos_in_Animal_Forest%2C_Umino_Nakamichi_Seaside_Park.JPG/960px-Kangaroos_in_Animal_Forest%2C_Umino_Nakamichi_Seaside_Park.JPG" data-icon="◈" data-bg="linear-gradient(135deg,#0a1a0a,#152515)" data-label="우미노나카미치">
         <div class="photo-cap">우미노나카미치 해변공원</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Nakasu-yatai.JPG/960px-Nakasu-yatai.JPG" data-icon="🏮" data-bg="linear-gradient(135deg,#f7301e,#ff8c00)" data-label="나카스 야타이 포장마차">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Nakasu-yatai.JPG/960px-Nakasu-yatai.JPG" data-icon="◆" data-bg="linear-gradient(135deg,#200808,#351515)" data-label="나카스 야타이">
         <div class="photo-cap">나카스 야타이 포장마차</div>
       </div>
     </div>
@@ -972,16 +1365,16 @@
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">09:30 – 12:30</div>
+        <div class="tl-time">09:30 — 12:30</div>
         <div class="tl-title">우미노나카미치 해변공원</div>
         <div class="tl-desc">자전거 대여 (대형 탠덤 있음), 캥거루·카피바라 동물 교감, 대형 트램펄린. 4월 벚꽃도 함께.</div>
-        <span class="tl-tag warn">⚠ 화요일 휴무 — 이날(일) 배치 필수</span>
+        <span class="tl-tag warn">화요일 휴무 — 토요일 배치 필수</span>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">13:00 – 16:30</div>
-        <div class="tl-title">🐬 마린월드 우미노나카미치</div>
-        <div class="tl-desc">공원 바로 옆. 돌고래·바다사자 쇼, 다이버 대화 체험. 손등 UV 스탬프로 재입장 가능. 쇼 시간표 현장 TV 확인.</div>
+        <div class="tl-time">13:00 — 16:30</div>
+        <div class="tl-title">마린월드 우미노나카미치</div>
+        <div class="tl-desc">공원 바로 옆. 돌고래·바다사자 쇼, 다이버 대화 체험. 손등 UV 스탬프로 재입장 가능.</div>
         <span class="tl-tag">토요일 오후 혼잡 — 쇼 시간 미리 확인</span>
       </div>
       <div class="tl-item">
@@ -992,43 +1385,41 @@
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">17:30 – 20:00</div>
-        <div class="tl-title">🏮 나카스 야타이</div>
-        <div class="tl-desc">하카타 라멘·꼬치구이·야키소바. 8인이라 포장마차 2곳 나눠 앉는 것도 방법. 토요일 혼잡하므로 6시 이전 자리 선점.</div>
-        <span class="tl-tag warn">⚠ 17:30 도착 추천 — 토요일 혼잡</span>
+        <div class="tl-time">17:30 — 20:00</div>
+        <div class="tl-title">나카스 야타이</div>
+        <div class="tl-desc">하카타 라멘·꼬치구이·야키소바. 8인이라 포장마차 2곳 나눠 앉는 것도 방법.</div>
+        <span class="tl-tag warn">17:30 도착 추천 — 토요일 혼잡</span>
       </div>
     </div>
 
     <div class="map-embed-wrap">
-      <iframe
-        src="https://maps.google.com/maps?q=Uminonakamichi%20Seaside%20Park%20Fukuoka&z=14&output=embed&hl=ko"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <div class="map-embed-label">📍 우미노나카미치 해변공원</div>
+      <iframe src="https://maps.google.com/maps?q=Uminonakamichi%20Seaside%20Park%20Fukuoka&z=14&output=embed&hl=ko" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-embed-label">우미노나카미치 해변공원</div>
     </div>
   </section>
 
-  <!-- ── DAY 3 ── -->
-  <section class="day-section" id="day3">
+  <!-- ══ DAY 3 ══ -->
+  <section class="day-section" id="day3" data-day="03">
     <div class="day-header">
       <div class="day-badge">
-        <span class="day-num">3</span>
-        <span class="day-label">Day</span>
+        <div class="day-num-wrap">
+          <span class="day-num">03</span>
+        </div>
+        <span class="day-label-text">Day</span>
+        <div class="day-vline"></div>
       </div>
-      <div>
-        <p class="day-date">2026년 4월 5일 (일요일)</p>
+      <div class="day-info">
+        <div class="day-date">2026년 4월 5일 일요일</div>
         <h2 class="day-title">유후인 · 벳부 일일 버스투어 (B코스)</h2>
         <p class="day-summary">B코스는 A코스 역순 진행. 유후인 자유시간 → 유후다케 → 유노하나 → 가마도 지옥 → 다자이후 텐만구. 입장료 포함, 한국어 가이드.</p>
       </div>
     </div>
 
     <div class="photo-grid g2">
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG/960px-View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG" data-icon="🏞️" data-bg="linear-gradient(135deg,#56ab2f,#a8e063)" data-label="유후인 킨린코 호수">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG/960px-View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG" data-icon="◎" data-bg="linear-gradient(135deg,#060e06,#101e10)" data-label="유후인">
         <div class="photo-cap">유후인 킨린코 호수</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Beppu_hell_01.JPG/960px-Beppu_hell_01.JPG" data-icon="♨️" data-bg="linear-gradient(135deg,#ff6e7f,#bfe9ff)" data-label="벳부 가마도 지옥 온천">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Beppu_hell_01.JPG/960px-Beppu_hell_01.JPG" data-icon="◉" data-bg="linear-gradient(135deg,#180808,#2d1010)" data-label="벳부 지옥">
         <div class="photo-cap">벳부 가마도 지옥 온천</div>
       </div>
     </div>
@@ -1037,40 +1428,40 @@
       <div class="tl-item">
         <div class="tl-dot special"></div>
         <div class="tl-time">07:40</div>
-        <div class="tl-title">⚠️ 하카타역 출발</div>
+        <div class="tl-title">하카타역 출발</div>
         <div class="tl-desc">치쿠시구치 오리엔탈 호텔 1F 로손 앞 주차장 집결. 정시 출발.</div>
-        <span class="tl-tag warn">⚠ 8인 동일 차량 배정 요청 필수</span>
+        <span class="tl-tag warn">8인 동일 차량 배정 요청 필수</span>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">09:40 – 12:40</div>
-        <div class="tl-title">🏞️ 유후인역 자유시간 (3시간)</div>
-        <div class="tl-desc">킨린코 호수 산책, 온천 족욕, 유노쓰보 카이도 쇼핑. 자유 점심 포함. 둘째도 즐길 수 있는 카페·기념품 거리.</div>
+        <div class="tl-time">09:40 — 12:40</div>
+        <div class="tl-title">유후인역 자유시간 (3시간)</div>
+        <div class="tl-desc">킨린코 호수 산책, 온천 족욕, 유노쓰보 카이도 쇼핑. 자유 점심 포함.</div>
         <span class="tl-tag">일요일 — 평일보다 한산한 편</span>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-time">12:50</div>
-        <div class="tl-title">📸 유후다케 등산로 인생샷</div>
-        <div class="tl-desc">싱그러운 녹음 배경으로 유후다케 뷰 포인트에서 인생샷 타임. 짧게 정차.</div>
+        <div class="tl-title">유후다케 등산로 인생샷</div>
+        <div class="tl-desc">싱그러운 녹음 배경으로 유후다케 뷰 포인트에서 인생샷 타임.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-time">13:30 – 13:50</div>
-        <div class="tl-title">♨️ 유노하나 유황재배지</div>
-        <div class="tl-desc">300년 역사의 전통 입욕제 발상지. 기술·풍경 모두 문화재 등록. 20분 자유관람.</div>
+        <div class="tl-time">13:30 — 13:50</div>
+        <div class="tl-title">유노하나 유황재배지</div>
+        <div class="tl-desc">300년 역사의 전통 입욕제 발상지. 20분 자유관람.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">14:00 – 14:40</div>
-        <div class="tl-title">🔥 가마도 지고쿠 (벳부 지옥)</div>
-        <div class="tl-desc">펄펄 끓는 지옥 온천 + 족욕 체험 + 삶은 달걀. 입장료 투어 포함. 하차 가능.</div>
-        <span class="tl-tag">★ 하차 가능 — 족욕 꼭 해보기</span>
+        <div class="tl-time">14:00 — 14:40</div>
+        <div class="tl-title">가마도 지고쿠 (벳부 지옥)</div>
+        <div class="tl-desc">펄펄 끓는 지옥 온천 + 족욕 체험 + 삶은 달걀. 입장료 투어 포함.</div>
+        <span class="tl-tag">하차 가능 — 족욕 꼭 해보기</span>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">16:30 – 17:40</div>
-        <div class="tl-title">⛩️ 다자이후 텐만구</div>
+        <div class="tl-time">16:30 — 17:40</div>
+        <div class="tl-title">다자이후 텐만구</div>
         <div class="tl-desc">학문의 신 스가와라 미치자네를 모시는 신사. 우메가에모치 시식 포함. 1시간 10분 자유관람.</div>
       </div>
       <div class="tl-item">
@@ -1083,9 +1474,9 @@
 
     <div class="place-cards">
       <div class="place-card">
-        <div class="place-card-name">클룩 버스투어 (B코스)</div>
-        <div class="place-card-info">예약번호: MPQ126831<br>유후인→벳부→다자이후 순<br>한국어 가이드·입장료 포함</div>
-        <a href="https://www.klook.com/ko/activity/83595-fukuoka-yufuin-bus-tour/" target="_blank" class="place-card-link">예약 페이지 →</a>
+        <div class="place-card-name">클룩 버스투어 B코스</div>
+        <div class="place-card-info">예약번호: MPQ126831<br>유후인→유후다케→유노하나→가마도지옥→다자이후<br>한국어 가이드·입장료 포함</div>
+        <a href="https://www.klook.com/ko/activity/83595-fukuoka-yufuin-bus-tour/" target="_blank" class="place-card-link">예약 페이지 확인</a>
       </div>
       <div class="place-card">
         <div class="place-card-name">벳부 가마도 지고쿠</div>
@@ -1094,38 +1485,36 @@
     </div>
 
     <div class="map-embed-wrap">
-      <iframe
-        src="https://maps.google.com/maps?q=Yufuin%20Onsen%2C%20Yufu%2C%20Oita&z=14&output=embed&hl=ko"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <div class="map-embed-label">📍 유후인 온천 거리</div>
+      <iframe src="https://maps.google.com/maps?q=Yufuin%20Onsen%2C%20Yufu%2C%20Oita&z=14&output=embed&hl=ko" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-embed-label">유후인 온천 거리</div>
     </div>
   </section>
 
-  <!-- ── DAY 4 ── -->
-  <section class="day-section" id="day4">
+  <!-- ══ DAY 4 ══ -->
+  <section class="day-section" id="day4" data-day="04">
     <div class="day-header">
       <div class="day-badge">
-        <span class="day-num">4</span>
-        <span class="day-label">Day</span>
+        <div class="day-num-wrap">
+          <span class="day-num">04</span>
+        </div>
+        <span class="day-label-text">Day</span>
+        <div class="day-vline"></div>
       </div>
-      <div>
-        <p class="day-date">2026년 4월 6일 (월요일)</p>
+      <div class="day-info">
+        <div class="day-date">2026년 4월 6일 월요일</div>
         <h2 class="day-title">중고 피규어샵 · 캐널시티 라멘 · 모모치 · 후쿠오카 타워</h2>
         <p class="day-summary">월요일 평일 황금 타임. 북오프·만다라케 관광객 없이 여유롭게. 오후는 라멘·쇼핑·해변·야경으로 마무리.</p>
       </div>
     </div>
 
     <div class="photo-grid g3">
-      <div class="photo-wrap" data-src="https://i.namu.wiki/i/vYw5V3R1cntlHUOSWDxasN9BbfzVmp_bnZc_lPCeVCoGf895x2tfwLGMRoHpJs4DLSKctjcNqB4eLyBStcrObNUPFQfQ76-my9u-feKJPrxv7NZJh0kbhz360OV3EaIKP8xhdySFqzudgwT9AiGM6AzisVIaxBfRq0bZ_0VZHkU.webp" data-icon="🎌" data-bg="linear-gradient(135deg,#373b44,#4286f4)" data-label="만다라케 중고 피규어샵">
+      <div class="photo-wrap" data-src="https://i.namu.wiki/i/vYw5V3R1cntlHUOSWDxasN9BbfzVmp_bnZc_lPCeVCoGf895x2tfwLGMRoHpJs4DLSKctjcNqB4eLyBStcrObNUPFQfQ76-my9u-feKJPrxv7NZJh0kbhz360OV3EaIKP8xhdySFqzudgwT9AiGM6AzisVIaxBfRq0bZ_0VZHkU.webp" data-icon="◈" data-bg="linear-gradient(135deg,#060812,#10141f)" data-label="만다라케">
         <div class="photo-cap">만다라케 중고 피규어샵</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hidechan_Ramen.JPG/960px-Hidechan_Ramen.JPG" data-icon="🍜" data-bg="linear-gradient(135deg,#f7931e,#fde080)" data-label="캐널시티 라멘 스타디움">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hidechan_Ramen.JPG/960px-Hidechan_Ramen.JPG" data-icon="◎" data-bg="linear-gradient(135deg,#181006,#2d2010)" data-label="라멘 스타디움">
         <div class="photo-cap">캐널시티 라멘 스타디움</div>
       </div>
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg/960px-Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg" data-icon="🗼" data-bg="linear-gradient(135deg,#0f0c29,#302b63)" data-label="후쿠오카 타워 야경">
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg/960px-Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg" data-icon="◆" data-bg="linear-gradient(135deg,#04060c,#0c1020)" data-label="후쿠오카 타워">
         <div class="photo-cap">후쿠오카 타워 야경</div>
       </div>
     </div>
@@ -1134,44 +1523,32 @@
       <div class="tl-item">
         <div class="tl-dot special"></div>
         <div class="tl-time">10:00</div>
-        <div class="tl-title">🎮 BOOKOFF 하카타구치점</div>
+        <div class="tl-title">BOOKOFF 하카타구치점</div>
         <div class="tl-desc">하카타역 바로 앞. 건프라·피규어·TCG 카드 100엔 코너. 월요일이라 한산하게 탐방.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-time">11:30</div>
-        <div class="tl-title">만다라케 이동</div>
-        <div class="tl-desc">도보 약 10분. 다이묘 지구. 12시 오픈 맞춰 도착.</div>
-      </div>
-      <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">12:00 – 14:00</div>
-        <div class="tl-title">🎌 만다라케 후쿠오카</div>
-        <div class="tl-desc">빈티지 피규어·희귀 만화·굿즈. 월요일 평일이라 매우 여유로움. 시간 충분히 필요.</div>
+        <div class="tl-time">12:00 — 14:00</div>
+        <div class="tl-title">만다라케 후쿠오카</div>
+        <div class="tl-desc">빈티지 피규어·희귀 만화·굿즈. 월요일 평일이라 매우 여유로움.</div>
         <span class="tl-tag">영업 12:00 – 20:00</span>
       </div>
       <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-time">14:00</div>
-        <div class="tl-title">캐널시티 하카타 이동</div>
-        <div class="tl-desc">도보 약 15분.</div>
-      </div>
-      <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">14:00 – 15:30</div>
-        <div class="tl-title">🍜 5층 라멘 스타디움 점심</div>
+        <div class="tl-time">14:00 — 15:30</div>
+        <div class="tl-title">캐널시티 5층 라멘 스타디움</div>
         <div class="tl-desc">전국 유명 라멘집 입점. 8인 각자 취향껏 다른 집 먹어도 OK. 평일이라 대기 짧음.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-time">15:30 – 17:00</div>
+        <div class="tl-time">15:30 — 17:00</div>
         <div class="tl-title">캐널시티 쇼핑</div>
-        <div class="tl-desc">에건담샵·지브리샵. 분수 쇼 매시 정각. 기념품 구매.</div>
+        <div class="tl-desc">건담샵·지브리샵. 분수 쇼 매시 정각. 기념품 구매.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
-        <div class="tl-time">17:30 – 19:30</div>
-        <div class="tl-title">🌊 모모치 해변 + 후쿠오카 타워</div>
+        <div class="tl-time">17:30 — 19:30</div>
+        <div class="tl-title">모모치 해변 + 후쿠오카 타워</div>
         <div class="tl-desc">해변 모래놀이 (둘째), 후쿠오카 타워 야경 800엔 (첫째). 평일 저녁이라 한산.</div>
       </div>
       <div class="tl-item">
@@ -1183,33 +1560,31 @@
     </div>
 
     <div class="map-embed-wrap">
-      <iframe
-        src="https://maps.google.com/maps?q=Canal%20City%20Hakata%20Fukuoka&z=16&output=embed&hl=ko"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <div class="map-embed-label">📍 캐널시티 하카타</div>
+      <iframe src="https://maps.google.com/maps?q=Canal%20City%20Hakata%20Fukuoka&z=16&output=embed&hl=ko" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-embed-label">캐널시티 하카타</div>
     </div>
   </section>
 
-  <!-- ── DAY 5 ── -->
-  <section class="day-section" id="day5">
+  <!-- ══ DAY 5 ══ -->
+  <section class="day-section" id="day5" data-day="05">
     <div class="day-header">
       <div class="day-badge">
-        <span class="day-num">5</span>
-        <span class="day-label">Day</span>
+        <div class="day-num-wrap">
+          <span class="day-num">05</span>
+        </div>
+        <span class="day-label-text">Day</span>
+        <div class="day-vline"></div>
       </div>
-      <div>
-        <p class="day-date">2026년 4월 7일 (화요일)</p>
+      <div class="day-info">
+        <div class="day-date">2026년 4월 7일 화요일</div>
         <h2 class="day-title">기념품 마무리 · 귀국</h2>
         <p class="day-summary">화요일 평일이라 공항도 하카타역도 여유로워요. 느긋하게 기념품 쇼핑 후 귀국.</p>
       </div>
     </div>
 
     <div class="photo-grid g1">
-      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg/960px-140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg" data-icon="✈️🌸" data-bg="linear-gradient(135deg,#ffb7c5,#c44569)" data-label="후쿠오카 — 또 올게요 🌸">
-        <div class="photo-cap">후쿠오카 — 또 올게요 🌸</div>
+      <div class="photo-wrap" data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg/960px-140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg" data-icon="◎" data-bg="linear-gradient(135deg,#080e14,#101820)" data-label="후쿠오카 공항">
+        <div class="photo-cap">후쿠오카 공항 — 또 올게요</div>
       </div>
     </div>
 
@@ -1222,253 +1597,294 @@
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-time">09:00 – 09:30</div>
+        <div class="tl-time">09:00 — 09:30</div>
         <div class="tl-title">하카타역 지하 기념품 구역</div>
         <div class="tl-desc">명란젓·히요코 과자·모츠나베 재료. 화요일 오전이라 한산.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
         <div class="tl-time">09:30</div>
-        <div class="tl-title">✈️ 후쿠오카 공항 출발</div>
+        <div class="tl-title">후쿠오카 공항 출발</div>
         <div class="tl-desc">하카타역에서 지하철 2정거장, 약 5분. 벚꽃 시즌 혼잡 대비 3시간 전 도착 권장.</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot special"></div>
         <div class="tl-time">12:30</div>
-        <div class="tl-title">🎌 출발</div>
+        <div class="tl-title">출발</div>
         <div class="tl-desc">즐거운 후쿠오카 여행 마무리!</div>
       </div>
     </div>
   </section>
 
-  <!-- ── CHECKLIST ── -->
+  <!-- ══ CHECKLIST ══ -->
   <div class="checklist-box">
-    <div class="checklist-title">✅ 사전 예약 체크리스트</div>
+    <div class="checklist-header">
+      <div class="checklist-header-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <polyline points="2,7 6,11 12,3" stroke="#c8a04a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="checklist-title">사전 예약 체크리스트</div>
+    </div>
     <div class="checklist-item">
-      <div class="check-box">✓</div>
-      <div>
+      <div class="check-status done">✓</div>
+      <div class="checklist-text">
         <strong>클룩 유후인 버스투어 B코스 예약 완료 (4/5 일요일)</strong>
         <div class="checklist-sub">예약번호: MPQ126831 · 유후인→유후다케→유노하나→가마도지옥→다자이후 순 · 07:40 하카타역 출발</div>
       </div>
     </div>
     <div class="checklist-item">
-      <div class="check-box">!</div>
-      <div>
+      <div class="check-status todo">!</div>
+      <div class="checklist-text">
         <strong>마린월드 사전 입장권 확인 (4/4 토요일)</strong>
-        <div class="checklist-sub">토요일 혼잡 가능, 온라인 예매 여부 확인 →
-          <a href="http://www.marine-world.jp/" target="_blank" class="checklist-link">공식 사이트</a>
-        </div>
+        <div class="checklist-sub">토요일 혼잡 가능, 온라인 예매 여부 확인 → <a href="http://www.marine-world.jp/" target="_blank" class="checklist-link">공식 사이트</a></div>
       </div>
     </div>
     <div class="checklist-item">
-      <div class="check-box">!</div>
-      <div>
+      <div class="check-status todo">!</div>
+      <div class="checklist-text">
         <strong>숙소 조기 체크인 가능 여부 확인</strong>
-        <div class="checklist-sub">4/3 11:30 도착이라 체크인 전 짐 보관 필요 →
-          <a href="https://crosslife-hakatatenjin.orixhotelsandresorts.com/" target="_blank" class="checklist-link">숙소 사이트</a>
-        </div>
+        <div class="checklist-sub">4/3 11:30 도착이라 체크인 전 짐 보관 필요 → <a href="https://crosslife-hakatatenjin.orixhotelsandresorts.com/" target="_blank" class="checklist-link">숙소 사이트</a></div>
       </div>
     </div>
     <div class="checklist-item">
-      <div class="check-box">✓</div>
-      <div>
+      <div class="check-status done">✓</div>
+      <div class="checklist-text">
         <strong>IC카드 준비 — SUICA / PASMO / NIMOCA</strong>
-        <div class="checklist-sub">지하철·버스·편의점 모두 사용 가능. 후쿠오카 공항 도착 후 바로 구매 가능 · SUICA·PASMO는 한국에서 Apple Pay로 사전 발급도 가능</div>
+        <div class="checklist-sub">지하철·버스·편의점 모두 사용 가능. 후쿠오카 공항 도착 후 바로 구매 가능 · Apple Pay 사전 발급도 가능</div>
       </div>
     </div>
     <div class="checklist-item">
-      <div class="check-box">✓</div>
-      <div>
+      <div class="check-status done">✓</div>
+      <div class="checklist-text">
         <strong>4월 날씨 대비 — 겉옷 필수</strong>
         <div class="checklist-sub">평균 15–18°C, 일교차 있음. 특히 유후인·유후다케 및 저녁 야외 일정 시 필요</div>
       </div>
     </div>
   </div>
 
-  <!-- ── 구글 지도 + 쿠폰 ── -->
-  <div style="max-width:760px;margin:2rem auto 0;padding:0 1.2rem;">
-
-    <!-- 전체 일정 지도 -->
-    <div class="checklist-box" style="margin-bottom:1.5rem;">
-      <div class="checklist-title">🗺 전체 여행 장소 지도</div>
-      <div style="margin-top:1rem;text-align:center;">
-        <a href="https://maps.app.goo.gl/sZRBEVcFZR3HaFqS9" target="_blank"
-           class="map-btn" style="font-size:.88rem;padding:.8rem 1.8rem;">
-          📱 Google Maps에서 전체 일정 보기
-        </a>
+  <!-- ══ MAP CTA + COUPONS ══ -->
+  <div class="map-cta-box" style="margin-top:1.5rem;">
+    <div class="map-cta-inner">
+      <div>
+        <div class="map-cta-label">전체 여행 장소 지도</div>
+        <div class="map-cta-sub">Google Maps에서 전체 일정 핀 보기</div>
       </div>
+      <a href="https://maps.app.goo.gl/sZRBEVcFZR3HaFqS9" target="_blank" class="btn-gold">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="5" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M6 8c0 0-3.5 2.5-3.5 0A3.5 3.5 0 0 1 6 1.5a3.5 3.5 0 0 1 3.5 6.5C9.5 10.5 6 8 6 8z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        지도 열기
+      </a>
     </div>
-
-    <!-- 쿠폰 -->
-    <div class="checklist-box">
-      <div class="checklist-title">🎟 현지 할인 쿠폰</div>
-      <div class="checklist-item">
-        <div class="check-box">%</div>
-        <div>
-          <strong>돈키호테 할인쿠폰</strong>
-          <div class="checklist-sub">면세 쇼핑 시 추가 할인 · 현장 제시 →
-            <a href="https://japanportal.donki-global.com/coupon/cp001_ko.html"
-               target="_blank" class="checklist-link">쿠폰 받기</a>
-          </div>
-        </div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-box">%</div>
-        <div>
-          <strong>AEON MALL 쿠폰</strong>
-          <div class="checklist-sub">대형 쇼핑몰 할인 쿠폰 모음 →
-            <a href="https://en.aeonmall.global/coupons"
-               target="_blank" class="checklist-link">쿠폰 받기</a>
-          </div>
-        </div>
-      </div>
-      <div class="checklist-item">
-        <div class="check-box">%</div>
-        <div>
-          <strong>라라포트 면세 + 10% 할인쿠폰</strong>
-          <div class="checklist-sub">미쓰이 쇼핑파크 라라포트 · 면세 + 추가 10% 할인 →
-            <a href="https://mitsui-shopping-park.com/lalaport/msp-info/coupon/?rsapp=80_27"
-               target="_blank" class="checklist-link">쿠폰 받기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-</div><!-- /container -->
+  <div class="checklist-box" style="margin-top:1.5rem;">
+    <div class="checklist-header">
+      <div class="checklist-header-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <rect x="1.5" y="4" width="11" height="8" rx="0.5" stroke="#c8a04a" stroke-width="1.2"/>
+          <path d="M4.5 4V3a2.5 2.5 0 0 1 5 0v1" stroke="#c8a04a" stroke-width="1.2"/>
+          <line x1="7" y1="7" x2="7" y2="9" stroke="#c8a04a" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="checklist-title">현지 할인 쿠폰</div>
+    </div>
+    <div class="coupon-grid">
+      <div class="coupon-card">
+        <span class="coupon-badge">DISCOUNT</span>
+        <div class="coupon-name">돈키호테 할인쿠폰</div>
+        <div class="coupon-desc">면세 쇼핑 시 추가 할인 · 현장 제시</div>
+        <a href="https://japanportal.donki-global.com/coupon/cp001_ko.html" target="_blank" class="place-card-link">쿠폰 받기</a>
+      </div>
+      <div class="coupon-card">
+        <span class="coupon-badge">DISCOUNT</span>
+        <div class="coupon-name">AEON MALL 쿠폰</div>
+        <div class="coupon-desc">대형 쇼핑몰 할인 쿠폰 모음</div>
+        <a href="https://en.aeonmall.global/coupons" target="_blank" class="place-card-link">쿠폰 받기</a>
+      </div>
+      <div class="coupon-card">
+        <span class="coupon-badge">10% OFF</span>
+        <div class="coupon-name">라라포트 면세 + 10% 할인</div>
+        <div class="coupon-desc">미쓰이 쇼핑파크 · 면세 + 추가 10% 할인</div>
+        <a href="https://mitsui-shopping-park.com/lalaport/msp-info/coupon/?rsapp=80_27" target="_blank" class="place-card-link">쿠폰 받기</a>
+      </div>
+    </div>
+  </div>
 
+</div>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <p>🌸 <strong>2026 후쿠오카 가족여행</strong> · 4월 3일 – 7일 · 8인 대가족 · 즐거운 여행 되세요!</p>
+  <div class="footer-top">
+    <div class="footer-line"></div>
+    <div class="footer-title">福岡 家族旅行 2026</div>
+    <div class="footer-line"></div>
+  </div>
+  <div class="footer-sub">4월 3일 — 7일 · 8인 대가족 · 즐거운 여행 되세요</div>
 </footer>
 
 <script>
-// ── D-DAY 계산 ──
+/* ── D-DAY ── */
 function calcDday() {
-  const textEl = document.getElementById('dday-text');
-  if (!textEl) return;
+  const el = document.getElementById('dday-text');
+  if (!el) return;
   const today = new Date(); today.setHours(0,0,0,0);
-  const depart = new Date('2026-04-03'); depart.setHours(0,0,0,0);
-  const diff = Math.round((depart - today) / (1000*60*60*24));
-  if (diff > 0)        textEl.textContent = `${diff}일 남았어요 🌸`;
-  else if (diff === 0) textEl.textContent = `오늘 출발! ✈️`;
-  else if (diff > -5)  textEl.textContent = `신나는 후쿠오카 🎌`;
-  else                 textEl.textContent = `좋은 여행이었나요? 🌸`;
+  const dep = new Date('2026-04-03');
+  const diff = Math.round((dep - today) / 86400000);
+  if (diff > 0)       el.textContent = `D-${diff}`;
+  else if (diff === 0) el.textContent = `오늘 출발!`;
+  else if (diff > -5) el.textContent = `여행 중!`;
+  else                el.textContent = `즐거웠나요?`;
 }
 
-// ── 환율 조회 (다중 API 순차 시도) ──
+/* ── EXCHANGE RATE ── */
 async function fetchRate() {
-  const setRate = (krwPer1Jpy, label) => {
+  const setRate = (krwPer1Jpy, lbl) => {
     const per100 = Math.round(krwPer1Jpy * 100);
-    const el1 = document.getElementById('rate-val');
-    const el2 = document.getElementById('rate-100');
-    const el3 = document.getElementById('rate-change');
-    if (el1) el1.textContent = `1엔 = ${krwPer1Jpy.toFixed(2)}원`;
-    if (el2) el2.textContent = `${per100.toLocaleString()}원`;
-    if (el3) { el3.textContent = label; el3.className = 'rate-change rate-down'; }
+    const v = document.getElementById('rate-val');
+    const h = document.getElementById('rate-100');
+    if (v) v.textContent = `1엔 = ${krwPer1Jpy.toFixed(2)}원`;
+    if (h) h.textContent = `${per100.toLocaleString()}원`;
   };
-  const fallback = () => setRate(9.42, '(최근 기준)');
-
-  // API 1: exchangerate-api (KRW 기준)
   try {
-    const r = await fetch('https://open.er-api.com/v6/latest/KRW', {mode:'cors'});
+    const r = await fetch('https://open.er-api.com/v6/latest/KRW');
     const d = await r.json();
-    if (d?.rates?.JPY) { setRate(1 / d.rates.JPY, '실시간'); return; }
-  } catch(e) {}
-
-  // API 2: frankfurter (JPY 기준)
+    if (d?.rates?.JPY) { setRate(1/d.rates.JPY,'실시간'); return; }
+  } catch(e){}
   try {
-    const r = await fetch('https://api.frankfurter.app/latest?from=JPY&to=KRW', {mode:'cors'});
+    const r = await fetch('https://api.frankfurter.app/latest?from=JPY&to=KRW');
     const d = await r.json();
-    if (d?.rates?.KRW) { setRate(d.rates.KRW, '실시간'); return; }
-  } catch(e) {}
-
-  // API 3: fixer.io 대안 — currency-api (무료 CDN)
+    if (d?.rates?.KRW) { setRate(d.rates.KRW,'실시간'); return; }
+  } catch(e){}
   try {
     const r = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/jpy.json');
     const d = await r.json();
-    if (d?.jpy?.krw) { setRate(d.jpy.krw, '실시간'); return; }
-  } catch(e) {}
-
-  fallback();
+    if (d?.jpy?.krw) { setRate(d.jpy.krw,'최근'); return; }
+  } catch(e){}
+  const v = document.getElementById('rate-val');
+  const h = document.getElementById('rate-100');
+  if (v) v.textContent = '1엔 ≈ 9.42원';
+  if (h) h.textContent = '942원';
 }
 
-// ── 벚꽃 꽃잎 애니메이션 ──
-function createPetals() {
-  const container = document.getElementById('petals');
-  if (!container) return;
-  const petalSVGs = [
-    `<svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="8" ry="5" fill="#f4b0c0" opacity="0.85"/></svg>`,
-    `<svg viewBox="0 0 18 18"><ellipse cx="9" cy="9" rx="7" ry="4" fill="#f9c8d4" opacity="0.8"/></svg>`,
-    `<svg viewBox="0 0 16 16"><ellipse cx="8" cy="8" rx="6" ry="3.5" fill="#fbd8e4" opacity="0.75"/></svg>`,
-    `<svg viewBox="0 0 14 14"><ellipse cx="7" cy="7" rx="5" ry="3" fill="#f4a8b8" opacity="0.8"/></svg>`,
-  ];
-  for (let i = 0; i < 18; i++) {
-    const div = document.createElement('div');
-    div.className = 'petal';
-    const size = 10 + Math.random() * 16;
-    div.style.cssText = `left:${Math.random()*100}%;width:${size}px;height:${size}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*8}s;`;
-    div.innerHTML = petalSVGs[Math.floor(Math.random() * petalSVGs.length)];
-    container.appendChild(div);
+/* ── SAKURA CANVAS ── */
+function initSakura() {
+  const canvas = document.getElementById('sakura-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let petals = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
   }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function randomPetal() {
+    return {
+      x: Math.random() * W,
+      y: -20,
+      size: 5 + Math.random() * 9,
+      speedY: 0.6 + Math.random() * 1.2,
+      speedX: -0.4 + Math.random() * 0.8,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.04,
+      opacity: 0.3 + Math.random() * 0.5,
+      hue: 340 + Math.random() * 20,
+    };
+  }
+
+  function drawPetal(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = p.opacity;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size, p.size * 0.55, 0, 0, Math.PI * 2);
+    ctx.fillStyle = `hsl(${p.hue}, 60%, 75%)`;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    if (petals.length < 28 && Math.random() < 0.04) petals.push(randomPetal());
+    petals = petals.filter(p => p.y < H + 30);
+    petals.forEach(p => {
+      p.y += p.speedY;
+      p.x += p.speedX + Math.sin(p.y * 0.015) * 0.4;
+      p.rot += p.rotSpeed;
+      drawPetal(p);
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
 }
 
-// ── 네비게이션 ──
+/* ── IMAGE LOADER ── */
+function loadPhotos() {
+  document.querySelectorAll('.photo-wrap[data-src]').forEach(wrap => {
+    const src = wrap.getAttribute('data-src');
+    const icon = wrap.getAttribute('data-icon');
+    const bg = wrap.getAttribute('data-bg');
+    const lbl = wrap.getAttribute('data-label');
+    const cap = wrap.querySelector('.photo-cap');
+    const img = new Image();
+    Object.assign(img.style, {
+      position:'absolute', top:'0', left:'0', width:'100%', height:'100%', objectFit:'cover'
+    });
+    img.alt = lbl;
+    img.onload = () => wrap.insertBefore(img, cap);
+    img.onerror = () => {
+      const fb = document.createElement('div');
+      fb.className = 'photo-fallback';
+      fb.style.cssText = `background:${bg};`;
+      fb.innerHTML = `
+        <span style="font-size:2.4rem;opacity:0.5;color:#c8a04a;font-family:monospace;">${icon}</span>
+        <span style="color:rgba(232,224,208,0.5);font-size:.78rem;letter-spacing:.1em;padding:0 12px;text-align:center;">${lbl}</span>`;
+      wrap.insertBefore(fb, cap);
+    };
+    img.src = src;
+  });
+}
+
+/* ── NAVIGATION ── */
 function goDay(id, btn) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = el.getBoundingClientRect().top + window.scrollY - 100;
+  window.scrollTo({ top: offset, behavior: 'smooth' });
   document.querySelectorAll('.day-nav-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
 
-// ── 스크롤 네비게이션 활성화 ──
 const sections = document.querySelectorAll('.day-section');
 const navBtns  = document.querySelectorAll('.day-nav-btn');
+let ticking = false;
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 160) current = sec.id; });
-  navBtns.forEach((btn, i) => { btn.classList.toggle('active', current === `day${i+1}`); });
+  if (ticking) return;
+  requestAnimationFrame(() => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 160) current = sec.id;
+    });
+    navBtns.forEach((btn, i) => btn.classList.toggle('active', current === `day${i+1}`));
+    ticking = false;
+  });
+  ticking = true;
 });
 
-// ── 초기화 ──
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { calcDday(); fetchRate(); createPetals(); });
-} else {
-  calcDday(); fetchRate(); createPetals();
+/* ── INIT ── */
+function init() {
+  calcDday();
+  fetchRate();
+  initSakura();
+  loadPhotos();
 }
-</script>
-
-<script>
-/* ── 이미지 로더: Wikimedia 성공 시 표시, 실패 시 그라디언트 폴백 ── */
-(function() {
-  function loadPhotos() {
-    document.querySelectorAll('.photo-wrap[data-src]').forEach(function(wrap) {
-      var src  = wrap.getAttribute('data-src');
-      var icon = wrap.getAttribute('data-icon');
-      var bg   = wrap.getAttribute('data-bg');
-      var lbl  = wrap.getAttribute('data-label');
-      var cap  = wrap.querySelector('.photo-cap');
-
-      var img = new Image();
-      img.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;';
-      img.alt = lbl;
-
-      img.onload = function() { wrap.insertBefore(img, cap); };
-      img.onerror = function() {
-        var fb = document.createElement('div');
-        fb.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:' + bg + ';';
-        fb.innerHTML = '<span style="font-size:2.8rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))">' + icon + '</span>'
-                     + '<span style="color:#fff;font-weight:700;font-size:.85rem;padding:0 10px;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.5)">' + lbl + '</span>';
-        wrap.insertBefore(fb, cap);
-      };
-      img.src = src;
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadPhotos);
-  } else {
-    loadPhotos();
-  }
-})();
+document.readyState === 'loading'
+  ? document.addEventListener('DOMContentLoaded', init)
+  : init();
 </script>
 </body>
 </html>
