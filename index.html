@@ -394,15 +394,15 @@ body {
 
 .day-card {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 110px 1fr;
+  gap: 2rem;
   align-items: center;
 }
-.day-card.reverse { grid-template-columns: 1fr 200px; }
+.day-card.reverse { grid-template-columns: 1fr 110px; }
 .day-card.reverse .dc-visual { order: 2; }
 .day-card.reverse .dc-body { order: 1; }
 
-/* Circular image */
+/* Day emoji visual */
 .dc-visual {
   display: flex;
   flex-direction: column;
@@ -410,28 +410,20 @@ body {
   gap: 0.7rem;
 }
 .dc-circle {
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  border: 3px solid rgba(255,255,255,0.9);
-  box-shadow: var(--shadow-pk);
-  flex-shrink: 0;
-}
-.dc-circle img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.dc-circle:hover img { transform: scale(1.08); }
-.dc-circle-fallback {
-  position: absolute;
-  inset: 0;
+  width: 100px; height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 6px;
+  flex-shrink: 0;
+}
+.dc-circle img { display: none; }
+.dc-circle-fallback {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: none !important;
+  width: 100%; height: 100%;
 }
 .dc-day-badge {
   background: var(--rose);
@@ -1193,11 +1185,8 @@ footer::before {
       <div class="day-card reveal" id="day1">
         <div class="dc-visual">
           <div class="dc-circle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Cherry_blossom_in_Fukuokazeki_sakura_park.JPG/480px-Cherry_blossom_in_Fukuokazeki_sakura_park.JPG"
-                 alt="오호리 공원 벚꽃" loading="lazy"
-                 onerror="this.parentNode.querySelector('.dc-circle-fallback').style.display='flex'; this.style.display='none'">
-            <div class="dc-circle-fallback" style="display:none; background:linear-gradient(135deg,#fce8ee,#f4b8cc);">
-              <span style="font-size:2.5rem;">🌸</span>
+            <div class="dc-circle-fallback">
+              <span style="font-size:4rem;">🌸</span>
             </div>
           </div>
           <span class="dc-day-badge">Day 1</span>
@@ -1234,11 +1223,8 @@ footer::before {
       <div class="day-card reverse reveal reveal-delay-1" id="day2">
         <div class="dc-visual">
           <div class="dc-circle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Marine_World_Uminonakamichi_1.JPG/480px-Marine_World_Uminonakamichi_1.JPG"
-                 alt="마린월드" loading="lazy"
-                 onerror="this.parentNode.querySelector('.dc-circle-fallback').style.display='flex'; this.style.display='none'">
-            <div class="dc-circle-fallback" style="display:none; background:linear-gradient(135deg,#c8ede4,#7bbfb0);">
-              <span style="font-size:2.5rem;">🐬</span>
+            <div class="dc-circle-fallback">
+              <span style="font-size:4rem;">🐬</span>
             </div>
           </div>
           <span class="dc-day-badge mint">Day 2</span>
@@ -1279,11 +1265,8 @@ footer::before {
       <div class="day-card reveal reveal-delay-2" id="day3">
         <div class="dc-visual">
           <div class="dc-circle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG/480px-View_of_Mount_Yufudake_and_Yufuin_Onsen_Street_in_front_of_Yufuin_Station.JPG"
-                 alt="유후인" loading="lazy"
-                 onerror="this.parentNode.querySelector('.dc-circle-fallback').style.display='flex'; this.style.display='none'">
-            <div class="dc-circle-fallback" style="display:none; background:linear-gradient(135deg,#d4f0e8,#7bbfb0);">
-              <span style="font-size:2.5rem;">🏞️</span>
+            <div class="dc-circle-fallback">
+              <span style="font-size:4rem;">🏞️</span>
             </div>
           </div>
           <span class="dc-day-badge mint">Day 3</span>
@@ -1329,11 +1312,8 @@ footer::before {
       <div class="day-card reverse reveal reveal-delay-1" id="day4">
         <div class="dc-visual">
           <div class="dc-circle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg/480px-Fukuoka_Tower_at_Night_with_Sakura_Illumination.jpg"
-                 alt="후쿠오카 타워" loading="lazy"
-                 onerror="this.parentNode.querySelector('.dc-circle-fallback').style.display='flex'; this.style.display='none'">
-            <div class="dc-circle-fallback" style="display:none; background:linear-gradient(135deg,#fdf3d8,#e8c878);">
-              <span style="font-size:2.5rem;">🗼</span>
+            <div class="dc-circle-fallback">
+              <span style="font-size:4rem;">🗼</span>
             </div>
           </div>
           <span class="dc-day-badge gold">Day 4</span>
@@ -1375,11 +1355,8 @@ footer::before {
       <div class="day-card reveal" id="day5">
         <div class="dc-visual">
           <div class="dc-circle">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg/480px-140721_Fukuoka_Airport_Fukuoka_Japan08s3.jpg"
-                 alt="후쿠오카 공항" loading="lazy"
-                 onerror="this.parentNode.querySelector('.dc-circle-fallback').style.display='flex'; this.style.display='none'">
-            <div class="dc-circle-fallback" style="display:none; background:linear-gradient(135deg,#fce8ee,#f4b8cc);">
-              <span style="font-size:2.5rem;">✈️</span>
+            <div class="dc-circle-fallback">
+              <span style="font-size:4rem;">✈️</span>
             </div>
           </div>
           <span class="dc-day-badge">Day 5</span>
