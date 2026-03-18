@@ -293,15 +293,19 @@ body {
   50% { opacity:0.3; transform:scaleY(0.5); }
 }
 
-/* ─── WAVE DIVIDER ─── */
-.wave-wrap {
+/* ─── SECTION TRANSITIONS ─── */
+.sec-pink, .sec-mint, .sec-gold {
   position: relative;
-  margin-top: -2px;
-  line-height: 0;
 }
-.wave-wrap svg {
-  width: 100%;
-  display: block;
+.sec-mint {
+  border-radius: 40px 40px 0 0;
+  margin-top: -32px;
+  z-index: 1;
+}
+.sec-gold {
+  border-radius: 40px 40px 0 0;
+  margin-top: -32px;
+  z-index: 2;
 }
 
 /* ─── SECTION STYLES ─── */
@@ -1114,7 +1118,7 @@ footer::before {
     </div>
 
     <span class="hero-title-en">Fukuoka · Spring</span>
-    <span class="hero-title-kr"><span class="title-accent">후쿠오카</span> 가족여행</span>
+    <span class="hero-title-kr"><span class="title-accent">후쿠오카</span><br>가족여행</span>
     <span class="hero-title-sub">벚꽃 만개 시즌 · 2026년 4월 3일 – 7일 · 4박 5일</span>
 
     <div class="hero-meta">
@@ -1154,12 +1158,7 @@ footer::before {
   </div>
 </section>
 
-<!-- WAVE -->
-<div class="wave-wrap" style="background:var(--pink-hero);">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
-    <path d="M0,0 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 Z" fill="var(--cream)"/>
-  </svg>
-</div>
+
 
 <!-- OVERVIEW STRIP -->
 <div class="overview-strip">
@@ -1341,8 +1340,8 @@ footer::before {
         </div>
         <div class="dc-body">
           <div class="dc-date gold">2026년 4월 6일 월요일</div>
-          <h3 class="dc-title">중고 피규어샵 · 캐널시티 라멘 · 모모치 · 후쿠오카 타워</h3>
-          <p class="dc-summary">월요일 평일 황금 타임. 북오프·만다라케 관광객 없이 여유롭게. 라멘·해변·야경으로 마무리.</p>
+          <h3 class="dc-title">캐널시티 라멘 · 중고 피규어샵 · 모모치 · 후쿠오카 타워</h3>
+          <p class="dc-summary">월요일 평일 황금 타임. 오전 캐널시티 라멘·쇼핑, 오후 북오프·만다라케, 저녁 해변·야경으로 마무리.</p>
           <div class="mini-tl">
             <div class="mini-tl-item">
               <span class="mini-tl-time gold">10:00</span>
@@ -1350,18 +1349,18 @@ footer::before {
               <div class="mini-tl-text"><strong>BOOKOFF 하카타구치점</strong><span>건프라·피규어 100엔 코너</span></div>
             </div>
             <div class="mini-tl-item">
-              <span class="mini-tl-time gold">12:00</span>
+              <span class="mini-tl-time gold">11:30</span>
+              <div class="mini-tl-dot gold special"></div>
+              <div class="mini-tl-text"><strong>캐널시티 라멘 스타디움</strong><span>8인 각자 취향껏 다른 집. 평일이라 대기 짧음</span></div>
+            </div>
+            <div class="mini-tl-item">
+              <span class="mini-tl-time gold">13:30</span>
               <div class="mini-tl-dot gold special"></div>
               <div class="mini-tl-text">
                 <strong>만다라케 후쿠오카</strong>
                 <span>빈티지 피규어·희귀 만화·굿즈</span>
                 <span class="tl-warn good">영업 12:00–20:00</span>
               </div>
-            </div>
-            <div class="mini-tl-item">
-              <span class="mini-tl-time gold">14:00</span>
-              <div class="mini-tl-dot gold special"></div>
-              <div class="mini-tl-text"><strong>캐널시티 라멘 스타디움</strong><span>8인 각자 취향껏 다른 집</span></div>
             </div>
             <div class="mini-tl-item">
               <span class="mini-tl-time gold">17:30</span>
@@ -1416,12 +1415,7 @@ footer::before {
   </div>
 </section>
 
-<!-- WAVE 2 -->
-<div class="wave-wrap" style="background:var(--pink-pale);">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
-    <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#f0f8f6"/>
-  </svg>
-</div>
+
 
 <!-- HOT PLACES -->
 <section class="sec-mint">
@@ -1483,7 +1477,9 @@ footer::before {
       </div>
       <div class="place-row">
         <div class="place-thumb">
-          <div class="place-thumb-fb" style="display:flex;background:linear-gradient(135deg,#d8d0ff,#a090e0);"><span style="font-size:1.8rem;">🎌</span></div>
+          <img src="https://picsum.photos/seed/manga-fukuoka/200/200" alt="만다라케" loading="lazy"
+               onerror="this.style.display='none';this.parentNode.querySelector('.place-thumb-fb').style.display='flex'">
+          <div class="place-thumb-fb" style="display:none;background:linear-gradient(135deg,#2a2040,#4a3878);font-size:1.8rem;color:#fff;align-items:center;justify-content:center;">🎌</div>
         </div>
         <div class="place-info">
           <div class="place-num">SPOT 05</div>
@@ -1495,12 +1491,7 @@ footer::before {
   </div>
 </section>
 
-<!-- WAVE 3 -->
-<div class="wave-wrap" style="background:#f0f8f6;">
-  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;">
-    <path d="M0,20 C480,80 960,0 1440,60 L1440,80 L0,80 Z" fill="var(--gold-lt)"/>
-  </svg>
-</div>
+
 
 <!-- CHECKLIST + COUPONS -->
 <section class="sec-gold">
@@ -1597,12 +1588,7 @@ footer::before {
   </div>
 </section>
 
-<!-- WAVE 4 -->
-<div class="wave-wrap" style="background:var(--gold-lt);">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
-    <path d="M0,30 C360,60 720,0 1080,40 C1260,55 1380,15 1440,30 L1440,60 L0,60 Z" fill="var(--rose)"/>
-  </svg>
-</div>
+
 
 <!-- FOOTER -->
 <footer>
